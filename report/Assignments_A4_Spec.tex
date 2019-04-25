@@ -1,0 +1,439 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{hhline}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{url}
+
+\oddsidemargin -10mm
+\evensidemargin -10mm
+\textwidth 160mm
+\textheight 200mm
+\renewcommand\baselinestretch{1.0}
+
+\pagestyle {plain}
+\pagenumbering{arabic}
+
+\newcounter{stepnum}
+
+%% Comments
+
+\usepackage{color}
+
+\newif\ifcomments\commentstrue 
+
+\ifcomments
+\newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\else
+\newcommand{\authornote}[3]{}
+\newcommand{\todo}[1]{}
+\fi
+
+\newcommand{\wss}[1]{\authornote{blue}{SS}{#1}}
+
+\title{COMPSCI 2ME4 A4 Specification}
+\author{Song Tao Wu, wus92}
+
+\begin {document}
+
+\maketitle
+This Module Interface Specification (MIS) document contains modules, types and
+methods for implementing the state of a game called Game of Life. \\ \\
+\begin{Large}
+The Rules for Game of Life: \\
+\end{Large}
+For a space that is 'populated':
+
+Each cell with one or no neighbors dies, as if by solitude.
+
+Each cell with four or more neighbors dies, as if by overpopulation.
+
+Each cell with two or three neighbors survives. \\
+For a space that is 'empty' or 'unpopulated': 
+
+Each cell with three neighbors becomes populated.
+
+
+\bibliographystyle{plain}
+\bibliography{SmithCollectedRefs}
+
+\newpage
+
+\section* {Grid Types Module}
+
+\subsection*{Module}
+
+GridTypes
+
+\subsection* {Uses}
+
+N/A
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+row\_limit = 15\\
+column\_limit = 15
+ 
+\subsubsection* {Exported Types}
+
+GridT = sequence of [row\_limit] [column\_limit] of $\mathbb{B}$.
+
+\subsubsection* {Exported Access Programs}
+
+None
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+None
+
+\subsubsection* {State Invariant}
+
+None
+
+\newpage
+
+\section* {File Utility Module}
+
+\subsection*{Library}
+
+FileUtil
+
+\subsection* {Uses}
+
+Grid Types \\
+Game Board ADT
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+N/A
+ 
+\subsubsection* {Exported Types}
+
+N/A
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+readFile  & String & GridT & file\_not\_find \\
+\hline
+writeToFile & GameBoard, String  &  & \\
+\hline
+\end{tabular}
+
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+None
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent readFile(fileName):
+\begin{itemize}
+\item transition: read data from the file associated with the string fileName.
+  Use this data to construct a new gridT, which will be used to construct the new gameboard.\\
+
+  The text file has the following format, where $C_{xy}$ stand for strings that
+  represent the state of each cell. The state is
+  represented by either the string ``0'' or ``*'' which represents true(occupied) and false(unoccupied) respectively. All data values in a row are separated by spaces.  Rows are
+  separated by a new line.  
+  \begin{equation}
+    \begin{array}{ccccccc}
+      c_{00}, & c_{01}, & c_{02}, &..., & c_{0column\_limit} \\
+      c_{10}, & c_{11}, & c_{12}, &..., & c_{1column\_limit} \\
+      ..., & ..., & ..., & ..., & ... \\
+      c_{row\_limit0}, & c_{row\_limit1}, & c_{row\_limit2}, &..., & c_{row\_limit\ column\_limit} \\
+    \end{array}
+  \end{equation}
+
+\item out := G where $\forall\, x, y: \mathbb{N} | x \in [0..\text{row\_limit}] \wedge y \in [0..\text{column\_limit}]:  G[x][y] :=  c_{xy})$ \\
+
+\item exception: exc := (fileName does not exist $\implies$ file\_not\_find)
+
+\end{itemize}
+
+\noindent writeToFile(board, fileName):
+\begin{itemize}
+\item transition: write the grid data from board to the file associated with the string fileName. If the file does not exist, create a new file.\\
+
+  The text file has the following format, where $(\forall\, x, y: \mathbb{N} | x \in [0..\text{row\_limit}] \wedge y \in [0..\text{column\_limit}]: C_{xy} :=  \text{board.getGrid(x, y)})$ $C_{xy}$ stands for the character that represents the state of each cell. The state is
+ represented by either the string ``0'' or ``*'' which represents true(occupied) and false(unoccupied) respectively. All data values in a row are separated by spaces.  Rows are
+  separated by a new line.  
+
+  \begin{equation}
+    \begin{array}{ccccccc}
+      c_{00}, & c_{01}, & c_{02}, &..., & c_{0column\_limit} \\
+      c_{10}, & c_{11}, & c_{12}, &..., & c_{1column\_limit} \\
+      ..., & ..., & ..., & ..., & ... \\
+      c_{row\_limit0}, & c_{row\_limit1}, & c_{row\_limit2}, &..., & c_{row\_limit\ column\_limit} \\
+    \end{array}
+  \end{equation}
+
+
+\item exception: none
+
+\end{itemize}
+
+
+
+\newpage
+
+\section* {View Module}
+
+\subsection*{Library}
+
+View
+
+\subsection* {Uses}
+
+Grid Types \\
+Game Board ADT
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+N/A
+ 
+\subsubsection* {Exported Types}
+
+N/A
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+display  & GameBoard & &  \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+None
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent display(board):
+\begin{itemize}
+\item transition: 
+output the grid data from board to the standard output. \\
+  The output has the following format, where $(\forall\, x, y: \mathbb{N} | x \in [0..\text{row\_limit}] \wedge y \in [0..\text{column\_limit}]: C_{xy} :=  \text{board.getGrid(x, y)})$ $C_{xy}$ stands for the character that represents the state of each cell. The state is
+ represented by either the string ``0'' or ``*'' which represents true(occupied) and false(unoccupied) respectively. All data values in a row are separated by spaces.  Rows are
+  separated by a new line.  
+
+  \begin{equation}
+    \begin{array}{ccccccc}
+      c_{00}, & c_{01}, & c_{02}, &..., & c_{0column\_limit} \\
+      c_{10}, & c_{11}, & c_{12}, &..., & c_{1column\_limit} \\
+      ..., & ..., & ..., & ..., & ... \\
+      c_{row\_limit0}, & c_{row\_limit1}, & c_{row\_limit2}, &..., & c_{row\_limit\ column\_limit} \\
+    \end{array}
+  \end{equation}
+
+\item exception: none
+
+\end{itemize}
+
+
+\newpage
+
+
+\section* {Game Board ADT Module}
+
+\subsection*{Template Module}
+
+GameBoard
+
+\subsection* {Uses}
+
+\noindent GridTypes
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new GameBoard  & GridT & GameBoard & invalid\_argument\\
+\hline
+new GameBoard &  &  GameBoard & \\
+\hline
+next\_state & $\mathbb{N}$, $\mathbb{N}$  &  $\mathbb{B}$ & \\
+\hline
+num\_of\_alive\_neighbours & $\mathbb{N}$, $\mathbb{N}$  &  $\mathbb{B}$ & \\
+\hline
+getGrid &  & GridT & \\
+\hline
+update &  &  & \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+$grid$: GridT \textit{\# The game board grid}
+
+\subsubsection* {State Invariant}
+
+size(grid) = row$\_$limit $\times$ column$\_$limit
+
+
+\subsubsection* {Assumptions \& Design Decisions}
+
+\begin{itemize}
+
+\item The BoardT constructor is called before any other access
+  routine is called on that instance. Once a BoardT has been created, the
+  constructor will not be called on it again.
+
+\item For better scalability, this module is specified as an Abstract Data Type
+  (ADT) instead of an Abstract Object. This would allow multiple games to be
+  created and tracked at once by a client.
+
+\end{itemize}
+
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent GameBoard($\mathit{iniitial\_states}$):
+\begin{itemize}
+\item transition: 
+$grid := \mathit{initial\_states} $
+\item exception: $exc := ( \lnot \ (|$grid$| \  = \ $row$ \_$limit$ ) \implies $invalid$\_$argument$)$
+\end{itemize}
+
+\noindent GameBoard():
+\begin{itemize}
+\item transition: 
+$grid$ := G where $(\forall\, x, y: \mathbb{N} | x \in [0..\text{row\_limit}] \wedge y \in [0..\text{column\_limit}]: G[x][y] = false)$
+ 
+\item exception: none
+\end{itemize}
+
+\noindent next\_state($x, y$):
+\begin{itemize}
+\item output: 
+$(\lnot grid[x][y] \implies \text{num\_of\_alive\_neighbours($x, y$)} = 3) \lor grid[x][y] \implies (\text{num\_of\_alive\_neighbours($x, y$)} = 3 \lor \text{num\_of\_alive\_neighbours($x, y$)} = 2) )$
+\item exception: none
+
+\end{itemize}
+
+\noindent num\_of\_alive\_neighbours($x, y$):
+\begin{itemize}
+\item output : $ (+ \ a, b : \mathbb{N} \ | \ a \in [ max(x-1, 0)..min(x+1, \text{row\_limit})] \wedge b \in [ max(y-1, 0)..min(y+1, \text{column\_limit})] \wedge grid[a][b] : 1)$\\
+
+\item exception: none
+
+\end{itemize}
+
+\noindent getGrid():
+\begin{itemize}
+\item output : grid
+
+\item exception: none
+
+\end{itemize}
+
+\noindent update():
+\begin{itemize}
+\item transition: grid := G where 
+$\forall\, x, y: \mathbb{N} | x \in [0..\text{row\_limit}] \wedge y \in [0..\text{column\_limit}]:  G[x][y] :=  next\_state($x, y$)$ \\
+
+\item exception: none
+
+\end{itemize}
+
+\newpage
+
+\section*{Critique of Design}
+
+\subsection*{GridTypes Module}
+
+\begin{itemize}
+\item The module is just a library exporting constants like row size and column size and the whole gridT type - 2 dimensional vector of boolean value.
+
+\item The constants and type will be used in all other files.  By defining those value and types here, I modularize the code to avoid the need to redefining those values in every other modules.
+
+\end{itemize}
+
+\subsection*{FileUtil Module}
+
+\begin{itemize}
+\item The module provides methods to write board to and read data from a file. There're two methods - readFile and writeToFile. Since both methods have to do with file utilities. This modularization shows the programming design principle - separation of concern. 
+
+\item If we were to add more methods to interact with files, we could add the methods in this files. 
+
+\end{itemize}
+
+\subsection*{GameBoard Module}
+
+\begin{itemize}
+\item GameBoard provides methods to update the whole grid, and move on to the next state of the game.  
+
+\item There are two constructors, one getter for state variable, and three methods to update the whole grid. the two methods - num\_of\_alive\_neighbours and next\_state are used to update the whole grid. The two methods could have been made private to enhance information hiding principle. But for unit testing purpose, I decided to make them public to give me more options and freedom to interact with the grid. 
+
+\item The default constructor is used to set the whole grid to be unpopulated to avoid errors from not passing any parameters to the GameBoard. 
+
+\end{itemize}
+
+\subsection*{View Module}
+
+\begin{itemize}
+\item The module only provides one method to perform the basic view function.  It takes a GameBoard and output it to the standard output.  
+
+\item the function could have been included in the GameBoard module. But for the sake of MVC - Module View Controller and principle of separation of concern, the display method is included here in the module. 
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end {document}

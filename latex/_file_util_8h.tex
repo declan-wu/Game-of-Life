@@ -1,0 +1,64 @@
+\hypertarget{_file_util_8h}{}\section{include/\+File\+Util.h File Reference}
+\label{_file_util_8h}\index{include/FileUtil.h@{include/FileUtil.h}}
+
+
+A library exporting functions to read from and write to a file.  
+
+
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}Grid\+Types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Game\+Board.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+gridT \mbox{\hyperlink{_file_util_8h_af3475f242cba37d0034699591c7ac38e}{read\+File}} (std\+::string file\+Name)
+\begin{DoxyCompactList}\small\item\em reads a file and reture a gridT \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_file_util_8h_a0ddbce3b3b22f77e8b4cc933d6b9a3fb}{write\+To\+File}} (\mbox{\hyperlink{class_game_board}{Game\+Board}} board, std\+::string file\+Name)
+\begin{DoxyCompactList}\small\item\em write the grid to a file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A library exporting functions to read from and write to a file. 
+
+\begin{DoxyAuthor}{Author}
+Declan Wu 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_file_util_8h_af3475f242cba37d0034699591c7ac38e}\label{_file_util_8h_af3475f242cba37d0034699591c7ac38e}} 
+\index{FileUtil.h@{FileUtil.h}!readFile@{readFile}}
+\index{readFile@{readFile}!FileUtil.h@{FileUtil.h}}
+\subsubsection{\texorpdfstring{readFile()}{readFile()}}
+{\footnotesize\ttfamily gridT read\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+reads a file and reture a gridT 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & the name of the file to read from \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a gridT that was stored in the file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_file_util_8h_a0ddbce3b3b22f77e8b4cc933d6b9a3fb}\label{_file_util_8h_a0ddbce3b3b22f77e8b4cc933d6b9a3fb}} 
+\index{FileUtil.h@{FileUtil.h}!writeToFile@{writeToFile}}
+\index{writeToFile@{writeToFile}!FileUtil.h@{FileUtil.h}}
+\subsubsection{\texorpdfstring{writeToFile()}{writeToFile()}}
+{\footnotesize\ttfamily void write\+To\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game_board}{Game\+Board}}}]{board,  }\item[{std\+::string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+write the grid to a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & the name of the file you want to write \\
+\hline
+{\em board} & represents the gameboard \\
+\hline
+\end{DoxyParams}

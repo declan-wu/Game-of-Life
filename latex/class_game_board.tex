@@ -1,0 +1,127 @@
+\hypertarget{class_game_board}{}\section{Game\+Board Class Reference}
+\label{class_game_board}\index{GameBoard@{GameBoard}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_board_ac622cadcc81b3ffb71d8feb4506c04ac}{Game\+Board}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a new gameboard by default, setting all cells to be unpopulated. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_game_board_a82ca7599d8ef010f04cde54441570ee4}{Game\+Board}} (gridT initial\+\_\+states)
+\begin{DoxyCompactList}\small\item\em Constructs a new gameboard based on the given initial states. \end{DoxyCompactList}\item 
+gridT \mbox{\hyperlink{class_game_board_a71d1ef6a134272a74bf9b9e2ada64d35}{get\+Grid}} ()
+\begin{DoxyCompactList}\small\item\em Get the state of the game board. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_game_board_a33120884bc74e591c5006c80b17dfcf1}{next\+\_\+state}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em determine a cell\textquotesingle{}s next state \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_board_a274219c41327d6fe34ca7b50c5fa8284}{num\+\_\+of\+\_\+alive\+\_\+neighbours}} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Compute the number of populated neighbour of a cell located at (x, y) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_board_a5dc2bdedeaa9d70bb4a1c35a5a257d91}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates every cells in the gameboard. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_game_board_ac622cadcc81b3ffb71d8feb4506c04ac}\label{class_game_board_ac622cadcc81b3ffb71d8feb4506c04ac}} 
+\index{GameBoard@{GameBoard}!GameBoard@{GameBoard}}
+\index{GameBoard@{GameBoard}!GameBoard@{GameBoard}}
+\subsubsection{\texorpdfstring{GameBoard()}{GameBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Game\+Board\+::\+Game\+Board (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructs a new gameboard by default, setting all cells to be unpopulated. 
+
+\begin{DoxyReturn}{Returns}
+A new \mbox{\hyperlink{class_game_board}{Game\+Board}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_board_a82ca7599d8ef010f04cde54441570ee4}\label{class_game_board_a82ca7599d8ef010f04cde54441570ee4}} 
+\index{GameBoard@{GameBoard}!GameBoard@{GameBoard}}
+\index{GameBoard@{GameBoard}!GameBoard@{GameBoard}}
+\subsubsection{\texorpdfstring{GameBoard()}{GameBoard()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Game\+Board\+::\+Game\+Board (\begin{DoxyParamCaption}\item[{gridT}]{initial\+\_\+states }\end{DoxyParamCaption})}
+
+
+
+Constructs a new gameboard based on the given initial states. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em initial\+\_\+states} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \mbox{\hyperlink{class_game_board}{Game\+Board}} 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_board_a71d1ef6a134272a74bf9b9e2ada64d35}\label{class_game_board_a71d1ef6a134272a74bf9b9e2ada64d35}} 
+\index{GameBoard@{GameBoard}!getGrid@{getGrid}}
+\index{getGrid@{getGrid}!GameBoard@{GameBoard}}
+\subsubsection{\texorpdfstring{getGrid()}{getGrid()}}
+{\footnotesize\ttfamily gridT Game\+Board\+::get\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the state of the game board. 
+
+\begin{DoxyReturn}{Returns}
+the grid\textquotesingle{}s state -\/ 2 dimensional vector of boolean value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_board_a33120884bc74e591c5006c80b17dfcf1}\label{class_game_board_a33120884bc74e591c5006c80b17dfcf1}} 
+\index{GameBoard@{GameBoard}!next\_state@{next\_state}}
+\index{next\_state@{next\_state}!GameBoard@{GameBoard}}
+\subsubsection{\texorpdfstring{next\_state()}{next\_state()}}
+{\footnotesize\ttfamily bool Game\+Board\+::next\+\_\+state (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+determine a cell\textquotesingle{}s next state 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & represents the x coordinate \\
+\hline
+{\em y} & represents the y coordinate \\
+\hline
+{\em current\+\_\+state,represents} & the cell\textquotesingle{}s current state in boolean value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean value reprsents the next state the current cell is going to be 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_board_a274219c41327d6fe34ca7b50c5fa8284}\label{class_game_board_a274219c41327d6fe34ca7b50c5fa8284}} 
+\index{GameBoard@{GameBoard}!num\_of\_alive\_neighbours@{num\_of\_alive\_neighbours}}
+\index{num\_of\_alive\_neighbours@{num\_of\_alive\_neighbours}!GameBoard@{GameBoard}}
+\subsubsection{\texorpdfstring{num\_of\_alive\_neighbours()}{num\_of\_alive\_neighbours()}}
+{\footnotesize\ttfamily int Game\+Board\+::num\+\_\+of\+\_\+alive\+\_\+neighbours (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+
+
+Compute the number of populated neighbour of a cell located at (x, y) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & represents the x coordinate \\
+\hline
+{\em y} & represents the y coordinate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a integer value reprsents the number of populated neighbour of a cell 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_board_a5dc2bdedeaa9d70bb4a1c35a5a257d91}\label{class_game_board_a5dc2bdedeaa9d70bb4a1c35a5a257d91}} 
+\index{GameBoard@{GameBoard}!update@{update}}
+\index{update@{update}!GameBoard@{GameBoard}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Game\+Board\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates every cells in the gameboard. 
+
+\begin{DoxyReturn}{Returns}
+a value of type girdT reprsents the new grid at time T+1 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_game_board_8h}{Game\+Board.\+h}}\end{DoxyCompactItemize}
